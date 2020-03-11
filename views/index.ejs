@@ -1,0 +1,29 @@
+<%- include('./partials/header') %>
+<div class="container text-center text-dark">
+    <div class="row">
+        <div class="col-md-6">
+            <% results.forEach(result=>{ %>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <%= result.title %>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <img src="<%= result.image %>" class="img-responsive" alt="Image">
+                    <hr />
+                    <%= result.info %>
+                </div>
+                <div class="card-footer">
+                    <a href="/create/<%= result._id %>" class="btn btn-info"><i class="fas fa-edit fa-3"></i></a>
+                    <a href="/delete/<%= result._id %>" class="btn btn-info"><i class="fas fa-trash fa-3"></i></a>
+                </div>
+            </div>
+            <% })%>
+        </div>
+    </div>
+</div>
+
+
+
+<%- include('./partials/footer') %>
