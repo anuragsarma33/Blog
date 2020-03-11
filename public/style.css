@@ -1,0 +1,26 @@
+body {
+    background: linear-gradient(to right, #373B44, #4286f4);
+
+}
+
+.fas {
+    margin: 0 1rem;
+}
+
+nav>.container {
+    margin: 0 5rem;
+    padding: 0 5rem;
+}
+
+.navbar-nav .nav-link {
+    margin: 0 4rem;
+}
+
+.center-form {
+    margin: 1rem auto;
+}
+
+.form-group {
+    width: 32rem;
+    margin: 0.5rem auto;
+}
