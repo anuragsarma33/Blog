@@ -28,6 +28,11 @@ nav>.container {
 /* index */
 .date {
     text-align: right;
+    color: #aaa7a7;
+}
+
+.card-container {
+    margin-top: 4rem;
 }
 
 .trash-btn {
