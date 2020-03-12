@@ -1,0 +1,31 @@
+<%- include('./partials/header') %>
+
+<div class="container text-center center-form">
+    <h1 class="ui large grey header">Update Post</h1>
+    <div class="row">
+        <div class="col-md-12 col-sm-6 col-xs-12 text-light">
+            <form action="/edit/<%= result._id %> " method="POST">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title" class="form-control" autocomplete="off"
+                        value="<%= result.title %> ">
+                </div>
+                <div class="form-group">
+                    <label for="image">ImageURL</label>
+                    <input type="text" name="image" id="image" class="form-control" autocomplete="off"
+                        value="<%= result.image %> ">
+                </div>
+                <div class="form-group">
+                    <label for="info">Info</label>
+                    <textarea name="info" id="info" rows="5" class="form-control"><%= result.info %> </textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="ui inverted orange button">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<%- include('./partials/footer') %>
