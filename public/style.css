@@ -24,3 +24,12 @@ nav>.container {
     width: 32rem;
     margin: 0.5rem auto;
 }
+
+/* index */
+.date {
+    text-align: right;
+}
+
+.trash-btn {
+    text-align: right;
+}
