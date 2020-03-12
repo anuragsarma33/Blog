@@ -1,9 +1,14 @@
+//npm packages
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const app = express();
+
+//mvc files
 const config = require('./config/Db');
 const appRoutes = require('./route/blog.route');
+
+const app = express();
+
 //body-parser
 app.use(bodyParser.urlencoded({
     extended: true
@@ -21,7 +26,8 @@ app.use('/', appRoutes);
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
 }).then(result => {
     console.log('Database connected successfully');
 
