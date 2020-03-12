@@ -1,65 +1,66 @@
 const Blog = require('../model/blog.model');
+const date = new Date().getFullYear();
 module.exports = {
-    index: (req, res) => {
-        Blog.find()
-            .then(results => {
-                res.render('index', {
-                    pageTitle: 'Blog',
-                    results: results
-                })
-            }).catch(error => {
-                res.status(404).send('404 ERROR!!!Page Not Found')
-            })
-
+    index: async (req, res) => {
+        try {
+            const posts = await Blog.find();
+            res.render('index', {
+                pageTitle: 'Home',
+                results: posts,
+                date: date
+            });
+        } catch (error) {
+            res.status(400).send('Unable to find any posts');
+        }
     },
-    create: (req, res) => {
+    create: async (req, res) => {
         res.render('create', {
-            pageTitle: 'Create a new Post'
+            pageTitle: 'Create a new Post',
+            date: date
         })
     },
-    viewPost: (req, res) => {
-        const data = new Blog(req.body);
-        data.save().then((result) => {
-            res.redirect('/')
-        }).catch((error) => {
-            res.status(404).send('Cannot create your post')
-        })
-
-    },
-    editPost: (req, res) => {
-        const _id = req.params.id;
-        Blog.findById(_id).then(result => {
-            res.render('update', {
-                pageTitle: 'Update',
-                result: result
-            })
-        }).catch(err => {
-            res.status(404).send("Error")
-        })
-
-    },
-    updatePost: (req, res) => {
-        const _id = req.params.id;
-        Blog.findByIdAndUpdate(_id, req.body, {
-            new: true,
-            runValidators: true
-        }).then(post => {
-            if (!post) {
-                res.status(404).send('Unable to find post')
-            }
-            res.redirect('/')
-        }).catch(err => {
-            res.status(400).send("Try again")
-        })
-
-    },
-    deletePost: (req, res) => {
-        const _id = req.params.id;
-        Blog.findByIdAndDelete(_id).then(data => {
+    viewPost: async (req, res) => {
+        const posts = new Blog(req.body);
+        try {
+            const data = await posts.save();
             res.redirect('/');
-        }).catch(err => {
-            res.status(400).send('Unable to delete')
-        })
+        } catch (error) {
+            res.status(400).send('Unable to save');
+        }
+    },
+    editPost: async (req, res) => {
+        const _id = req.params.id;
+        try {
+            const post = await Blog.findById(_id);
+            res.render('update', {
+                pageTitle: 'Edit a Post',
+                result: post,
+                date: date
+            })
+        } catch (error) {
+            res.status(400).send('Unable to fetch the update route');
+        }
+    },
+    updatePost: async (req, res) => {
+        const _id = req.params.id;
+        try {
+            const post = await Blog.findByIdAndUpdate(_id, req.body, {
+                new: true,
+                runValidators: true
+            });
+            res.redirect('/');
+        } catch (error) {
+            res.status(400).send('Unable to update.Try again!!!');
+        }
+    },
+    deletePost: async (req, res) => {
+        const _id = req.params.id;
+        try {
+            const post = await Blog.findByIdAndDelete(_id);
+            res.redirect('/');
+        } catch (error) {
+            res.status(400).send('Unable to delete.Try again!!!');
+        }
 
     }
 }
