@@ -1,21 +1,20 @@
 <%- include('./partials/header') %>
-<div class="container text-center text-dark">
+<div class="container text-center card-container">
     <div class="row">
+        <% results.forEach(result=>{ %>
         <div class="col-md-6">
-            <% results.forEach(result=>{ %>
             <div class="card">
                 <div class="card-header">
                     <div class="card-title">
-                        <h4 class="well"><%= result.title %></h4>
+                        <h2 class="well"><%= result.title %></h2>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="image">
-                        <img src="<%= result.image %>" class="img-responsive" alt="Image">
+                        <img src="<%= result.image %>" class="ui centered big rounded image" alt="Image" />
                     </div>
-                    <p class="meta date"><%= result.created.toDateString() %> </p>
+                    <p class="date"><%= result.created.toDateString() %></p>
                     <hr />
-
                     <p><%= result.info %></p>
                 </div>
                 <div class="card-footer">
@@ -24,15 +23,12 @@
 
                     <a href="/delete/<%= result._id %>" class="ui red right floated button"><i
                             class="fas fa-trash fa-3"></i></a>
-
-
                 </div>
             </div>
-            <% })%>
+
         </div>
+        <% })%>
     </div>
 </div>
-
-
 
 <%- include('./partials/footer') %>
