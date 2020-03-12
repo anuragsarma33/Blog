@@ -6,17 +6,26 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-title">
-                        <%= result.title %>
+                        <h4 class="well"><%= result.title %></h4>
                     </div>
                 </div>
                 <div class="card-body">
-                    <img src="<%= result.image %>" class="img-responsive" alt="Image">
+                    <div class="image">
+                        <img src="<%= result.image %>" class="img-responsive" alt="Image">
+                    </div>
+                    <p class="meta date"><%= result.created.toDateString() %> </p>
                     <hr />
-                    <%= result.info %>
+
+                    <p><%= result.info %></p>
                 </div>
                 <div class="card-footer">
-                    <a href="/create/<%= result._id %>" class="btn btn-info"><i class="fas fa-edit fa-3"></i></a>
-                    <a href="/delete/<%= result._id %>" class="btn btn-info"><i class="fas fa-trash fa-3"></i></a>
+                    <a href="/edit/<%= result._id %>" class="ui orange left floated button"><i
+                            class="fas fa-edit fa-3"></i></a>
+
+                    <a href="/delete/<%= result._id %>" class="ui red right floated button"><i
+                            class="fas fa-trash fa-3"></i></a>
+
+
                 </div>
             </div>
             <% })%>
