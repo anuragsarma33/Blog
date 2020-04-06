@@ -1,5 +1,5 @@
 # Blog
-RESTful Blog App
+ Blog App using CRUD 
 
 ### Description
 Blogging Web App to post Blogs
